@@ -7,10 +7,10 @@
 class fi_BinaryClass{
   private:
     uint8_t number = 0;
-    uint8_t bitmask = 3;  // 0 1 2 3 =>>> 4 bit
   public:
 
     void set(uint8_t _value);
+    void precision(uint8_t _value);
     void display();
 };
 
