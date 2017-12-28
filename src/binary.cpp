@@ -29,8 +29,6 @@ void fi_BinaryClass::precision(uint8_t _value){
       fi_Interface.set(1, 0);
       delay(250);
     }
-    fi_Interface.set(1, 1);
-    delay(200);
     fi_Interface.set(0, 0);
     delay(500);
   }
