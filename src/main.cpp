@@ -34,29 +34,29 @@ void setup() {
   fi_IO.init();
   fi_IO.input();
 
-  FI_G_MILLIS = millis();
-  while (1) {
-    if(millis() - FI_G_MILLIS < 100){
-      fi_Interface.set(1, 1);
-    }else if(millis() - FI_G_MILLIS < 100*2){
-      fi_Interface.set(0, 0);
-    }else if(millis() - FI_G_MILLIS < 100*3){
-      fi_Interface.set(1, 1);
-    }else if(millis() - FI_G_MILLIS < 100*13){
-      fi_Interface.set(0, 0);
-    }else if(millis() - FI_G_MILLIS < 100*14){
-      fi_Interface.set(1, 1);
-      FI_G_MILLIS = millis();
-    }
-
-    if(FI_NAV_R){
-      fi_Interface.set(1, 1);
-      fi_IO.safe(FI_D_RIGHT);
-      fi_Interface.set(0, 0);
-
-      break;
-    }
-  }
+  // FI_G_MILLIS = millis();
+  // while (1) {
+  //   if(millis() - FI_G_MILLIS < 100){
+  //     fi_Interface.set(1, 1);
+  //   }else if(millis() - FI_G_MILLIS < 100*2){
+  //     fi_Interface.set(0, 0);
+  //   }else if(millis() - FI_G_MILLIS < 100*3){
+  //     fi_Interface.set(1, 1);
+  //   }else if(millis() - FI_G_MILLIS < 100*13){
+  //     fi_Interface.set(0, 0);
+  //   }else if(millis() - FI_G_MILLIS < 100*14){
+  //     fi_Interface.set(1, 1);
+  //     FI_G_MILLIS = millis();
+  //   }
+  //
+  //   if(FI_NAV_R){
+  //     fi_Interface.set(1, 1);
+  //     fi_IO.safe(FI_D_RIGHT);
+  //     fi_Interface.set(0, 0);
+  //
+  //     break;
+  //   }
+  // }
 
   fi_IO.safe(FI_D_RIGHT);
   fi_IO.output();
@@ -107,12 +107,14 @@ void loop() {
       hourvalue = now.hour();             // Get the hour
       if(hourvalue > 12) hourvalue -= 12; // This clock is 12 hour, is 13-24, convert to 1-12
       minutevalue = now.minute() / 5;
+      precisionvalue = now.minute() % 5;
 
       FI_G_MENU_STATE++;
     }
     if(FI_G_MENU_STATE == 1){
       fi_Binary.set(hourvalue);
       fi_Binary.set(minutevalue);
+      fi_Binary.precision(precisionvalue);
 
       FI_G_MENU_STATE = 0;
       FI_G_MENU = FI_D_MENU_HOME;
