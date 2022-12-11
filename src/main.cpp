@@ -88,7 +88,7 @@ void loop() {
           fi_Interface.set(0, 1);
           fi_IO.safe(FI_D_RIGHT);
           fi_Interface.set(0, 0);
-          delay(1000);
+          delay(500);
 
           FI_G_MENU_STATE = 0;
           FI_G_MENU = FI_D_MENU_HOUR;
@@ -97,7 +97,7 @@ void loop() {
           fi_Interface.set(1, 0);
           fi_IO.safe(FI_D_LEFT);
           fi_Interface.set(0, 0);
-          delay(1000);
+          delay(500);
 
           FI_G_MENU_STATE = 0;
           FI_G_MENU = FI_D_MENU_MINUTE;

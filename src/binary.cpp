@@ -1,5 +1,7 @@
 #include "binary.h"
 
+#define FI_DELAY 250
+
 void fi_BinaryClass::set(uint8_t _value){
   uint8_t bitmask = 3;
   for (uint8_t i = 0; i < 4; i++) {
@@ -10,14 +12,14 @@ void fi_BinaryClass::set(uint8_t _value){
       fi_Interface.set(1, 0);
     }
     bitmask--;
-    delay(500);
+    delay(FI_DELAY);
     fi_Interface.set(0, 0);
-    delay(500);
+    delay(FI_DELAY);
   }
   fi_Interface.set(1, 1);
   delay(200);
   fi_Interface.set(0, 0);
-  delay(500);
+  delay(FI_DELAY);
 }
 void fi_BinaryClass::precision(uint8_t _value){
   if(_value != 0){
@@ -25,12 +27,12 @@ void fi_BinaryClass::precision(uint8_t _value){
     delay(250);
     for (uint8_t i = 0; i < _value; i++) {
       fi_Interface.set(1, 1);
-      delay(250);
+      delay(150);
       fi_Interface.set(1, 0);
-      delay(250);
+      delay(150);
     }
     fi_Interface.set(0, 0);
-    delay(500);
+    delay(FI_DELAY);
   }
 }
 
